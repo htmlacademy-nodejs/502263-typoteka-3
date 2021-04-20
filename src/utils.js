@@ -1,6 +1,7 @@
 'use strict';
 
-const fs = require(`fs`);
+const fs = require(`fs`).promises;
+const chalk = require(`chalk`);
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
@@ -24,13 +25,14 @@ const getDeclension = (number, titlesArr) => {
 
 const getRandomArrElements = (arr, maxAmount = arr.length - 1) => shuffle(arr).slice(0, getRandomInt(1, maxAmount));
 
-const createFileFs = (fileName, content) => {
-  fs.writeFile(fileName, JSON.stringify(content), (err) => {
-    if (err) {
-      return console.error(err);
-    }
-    return console.info(`Файл ${fileName} создан. Количество публикаций: ${content.length}.`);
-  });
+const createFileFs = async (fileName, content) => {
+  try {
+    await fs.writeFile(fileName, JSON.stringify(content));
+    console.info(chalk.green(`Файл ${fileName} создан. Количество публикаций: ${content.length}.`));
+  } catch (err) {
+    console.error(chalk.red(err));
+    throw err;
+  }
 };
 
 module.exports = {

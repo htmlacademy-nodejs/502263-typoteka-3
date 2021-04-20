@@ -6,6 +6,7 @@ const {
   getDeclension,
   createFileFs
 } = require(`../../utils`);
+const chalk = require(`chalk`);
 
 const DATE_MONTHS_INTERVAL_PRIOR_TO_NOW = 3;
 const ANNOUNCE_MAX_LENGTH = 5;
@@ -92,7 +93,7 @@ module.exports = {
     const offersCount = Number.parseInt(count, 10) || Amount.DEFAULT;
 
     if (offersCount > Amount.MAX) {
-      console.info(`Не больше ${Amount.MAX} ${getDeclension(Amount.MAX, [`публикации`, `публикаций`, `публикаций`])}.`);
+      console.error(chalk.red(`Не больше ${Amount.MAX} ${getDeclension(Amount.MAX, [`публикации`, `публикаций`, `публикаций`])}.`));
       process.exit();
     }
 
