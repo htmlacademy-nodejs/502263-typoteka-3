@@ -25,7 +25,7 @@ const getDeclension = (number, titlesArr) => {
 
 const getRandomArrElements = (arr, maxAmount = arr.length - 1) => shuffle(arr).slice(0, getRandomInt(1, maxAmount));
 
-const createArrFromFileContent = async (filePath) => {
+const createArrayFromFileContent = async (filePath) => {
   try {
     const content = await fs.readFile(filePath, `utf8`);
     return content.split(`\n`);
@@ -50,6 +50,6 @@ module.exports = {
   shuffle,
   getDeclension,
   getRandomArrElements,
-  createArrFromFileContent,
+  createArrayFromFileContent,
   createFileFs
 };
