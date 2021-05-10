@@ -4,7 +4,7 @@ const {
   getRandomInt,
   getRandomArrElements,
   getDeclension,
-  createArrFromFileContent,
+  createArrayFromFileContent,
   createFileFs
 } = require(`../../utils`);
 const chalk = require(`chalk`);
@@ -54,9 +54,9 @@ module.exports = {
       process.exit();
     }
 
-    const sentences = await createArrFromFileContent(DataFilePaths.SENTENCES);
-    const titles = await createArrFromFileContent(DataFilePaths.TITLES);
-    const categories = await createArrFromFileContent(DataFilePaths.CATEGORIES);
+    const sentences = await createArrayFromFileContent(DataFilePaths.SENTENCES);
+    const titles = await createArrayFromFileContent(DataFilePaths.TITLES);
+    const categories = await createArrayFromFileContent(DataFilePaths.CATEGORIES);
 
     createFileFs(FILE_NAME, generateOffers(offersCount, titles, categories, sentences));
   }
